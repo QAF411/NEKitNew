@@ -1,7 +1,7 @@
 import Foundation
 import Resolver
 
-protocol TunnelDelegate : class {
+protocol TunnelDelegate : AnyObject {
     func tunnelDidClose(_ tunnel: Tunnel)
 }
 
