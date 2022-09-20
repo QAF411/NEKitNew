@@ -79,7 +79,7 @@ public class NWUDPSocket: NSObject {
                     sSelf.delegate?.didReceive(data: data, from: sSelf)
                 }
             }
-            }, maxDatagrams: 32)
+            }, maxDatagrams: 64)
     }
     
     /**
@@ -88,8 +88,10 @@ public class NWUDPSocket: NSObject {
      - parameter data: The data to send.
      */
     public func write(data: Data) {
-        pendingWriteData.append(data)
-        checkWrite()
+        queueCall {
+            self.pendingWriteData.append(data)
+            self.checkWrite()
+        }
     }
     
     public func disconnect() {
@@ -121,13 +123,19 @@ public class NWUDPSocket: NSObject {
             return
         }
         
+        guard !writing else {
+            return
+        }
+        
         guard pendingWriteData.count > 0 else {
             return
         }
-        session.writeMultipleDatagrams(self.pendingWriteData) {err in
-            if err != nil{
-                NSLog("--------->%%%%%%%%[\(TUNTCPSocket.TID)<--->\(Thread.current)] writeMultipleDatagrams error\(err!)")
-                self.disconnect()
+        
+        writing = true
+        session.writeMultipleDatagrams(self.pendingWriteData) {_ in
+            self.queueCall {
+                self.writing = false
+                self.checkWrite()
             }
         }
         self.pendingWriteData.removeAll(keepingCapacity: true)
