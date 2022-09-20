@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1812F32728D98AC500C7B2E6 /* UDPAssociateStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1812F32628D98AC500C7B2E6 /* UDPAssociateStack.swift */; };
+		1812F32828D98AC500C7B2E6 /* UDPAssociateStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1812F32628D98AC500C7B2E6 /* UDPAssociateStack.swift */; };
+		1812F32A28D98AE500C7B2E6 /* SOCKS5AuthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1812F32928D98AE500C7B2E6 /* SOCKS5AuthAdapter.swift */; };
+		1812F32B28D98AE500C7B2E6 /* SOCKS5AuthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1812F32928D98AE500C7B2E6 /* SOCKS5AuthAdapter.swift */; };
 		360F392C1DD2068E002BED59 /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 360F392B1DD2068E002BED59 /* Resolver.framework */; };
 		360F392D1DD206A3002BED59 /* Resolver.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 360F392B1DD2068E002BED59 /* Resolver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		360F39301DD20787002BED59 /* Resolver.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 360F392E1DD20774002BED59 /* Resolver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -379,6 +383,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1812F32628D98AC500C7B2E6 /* UDPAssociateStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDPAssociateStack.swift; sourceTree = "<group>"; };
+		1812F32928D98AE500C7B2E6 /* SOCKS5AuthAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOCKS5AuthAdapter.swift; sourceTree = "<group>"; };
 		360F392B1DD2068E002BED59 /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = Carthage/Build/Mac/Resolver.framework; sourceTree = SOURCE_ROOT; };
 		360F392E1DD20774002BED59 /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = Carthage/Build/iOS/Resolver.framework; sourceTree = SOURCE_ROOT; };
 		361176591DFFE98700A1A058 /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
@@ -896,6 +902,7 @@
 				366EB5AC1CDE0FCE00E0E942 /* HTTPAdapter.swift */,
 				368CBDA51D7911FA003CEA62 /* RejectAdapter.swift */,
 				3623479F1D824E4300A047DE /* SOCKS5Adapter.swift */,
+				1812F32928D98AE500C7B2E6 /* SOCKS5AuthAdapter.swift */,
 				366EB5AD1CDE0FCE00E0E942 /* SecureHTTPAdapter.swift */,
 				366EB5C21CDF375B00E0E942 /* SpeedAdapter.swift */,
 			);
@@ -1053,6 +1060,7 @@
 				36164A2E1CE7099300BAC90A /* Router.swift */,
 				36C63E031D02C0B700A00CA2 /* TCPStack.swift */,
 				36E44A011CF2ED4800185DBF /* TUNInterface.swift */,
+				1812F32628D98AC500C7B2E6 /* UDPAssociateStack.swift */,
 				36411A781D1FC224005F4108 /* UDPDirectStack.swift */,
 			);
 			path = IPStack;
@@ -1421,6 +1429,7 @@
 				36411A591D13988A005F4108 /* GCDHTTPProxyServer.swift in Sources */,
 				36B1620F1CDDA0E000F24C97 /* CountryRule.swift in Sources */,
 				36B1623D1CDDA0F300F24C97 /* AdapterFactoryManager.swift in Sources */,
+				1812F32A28D98AE500C7B2E6 /* SOCKS5AuthAdapter.swift in Sources */,
 				36B162111CDDA0E000F24C97 /* RuleManager.swift in Sources */,
 				3664F0BE1CE3069F008BA6D8 /* Opt.swift in Sources */,
 				366EB5B81CDE150C00E0E942 /* SecureHTTPAdapterFactory.swift in Sources */,
@@ -1437,6 +1446,7 @@
 				36B1622C1CDDA0EA00F24C97 /* SocketProtocol.swift in Sources */,
 				36411A7C1D1FE696005F4108 /* ConnectSession.swift in Sources */,
 				36C63E011D02BDEC00A00CA2 /* IPStackProtocol.swift in Sources */,
+				1812F32728D98AC500C7B2E6 /* UDPAssociateStack.swift in Sources */,
 				36B212341D54C30600C8AC0A /* HTTPStreamScanner.swift in Sources */,
 				366EB5C71CE033FB00E0E942 /* DomainListRule.swift in Sources */,
 				362950451D6AE2D0001A30F6 /* EventType.swift in Sources */,
@@ -1536,6 +1546,7 @@
 				36411A5A1D13988A005F4108 /* GCDHTTPProxyServer.swift in Sources */,
 				36C48D701CF88ECB0071804F /* TUNInterface.swift in Sources */,
 				36C48D6C1CF88ECB0071804F /* Port.swift in Sources */,
+				1812F32B28D98AE500C7B2E6 /* SOCKS5AuthAdapter.swift in Sources */,
 				36C48D861CF88EE60071804F /* Tunnel.swift in Sources */,
 				36411A5D1D167AA9005F4108 /* DNSSessionMatchResult.swift in Sources */,
 				3629504C1D6AE30C001A30F6 /* ProxySocketEvent.swift in Sources */,
@@ -1552,6 +1563,7 @@
 				36411A7D1D1FE696005F4108 /* ConnectSession.swift in Sources */,
 				36C48D711CF88ECF0071804F /* ProxyServer.swift in Sources */,
 				36B212351D54C30600C8AC0A /* HTTPStreamScanner.swift in Sources */,
+				1812F32828D98AC500C7B2E6 /* UDPAssociateStack.swift in Sources */,
 				36C63DC91CFD254100A00CA2 /* BinaryDataScanner.swift in Sources */,
 				362950461D6AE2D0001A30F6 /* EventType.swift in Sources */,
 				36DB3CE81E0CD17100D907DB /* IPInterval.swift in Sources */,
