@@ -33,8 +33,16 @@ class SOCKS5AuthAdapter: SOCKS5Adapter {
     let password: Data
     let endtime:  TimeInterval
     var waitAuthResult: Bool = false
+    
 
     public init(serverHost: String, serverPort: Int, username: String, password: String, endtime: TimeInterval) {
+        
+        // 纯数字--[https://blog.csdn.net/feelinghappy/article/details/120041611]
+        func isNumeric(_ str: String) -> Bool {
+            let numericCharacters = CharacterSet.decimalDigits
+            return str.rangeOfCharacter(from: numericCharacters.inverted) == nil
+        }
+        
         if(isNumeric(username)) {
 //            // 使用MemoryLayout.size(ofValue:)和Data(bytes:count:)的方式
 //            var intData = Data(bytes: &intValue, count: MemoryLayout.size(ofValue: intValue))
@@ -46,15 +54,17 @@ class SOCKS5AuthAdapter: SOCKS5Adapter {
 //            print("intData: \(intData as NSData)")
 //            print("numberData: \(numberData as NSData)")
             
+            var user = username
             // 使用MemoryLayout.size(ofValue:)和Data(bytes:count:)的方式
-            let intData = Data(bytes: &username, count: MemoryLayout.size(ofValue: username))
+            let intData = Data(bytes: &user, count: MemoryLayout.size(ofValue: user))
             self.username =  intData
         } else {
             self.username =  username.data(using: .utf8)!
         }
         
         if(isNumeric(password)) {
-            let intData = Data(bytes: &password, count: MemoryLayout.size(ofValue: password))
+            var pass = password
+            let intData = Data(bytes: &pass, count: MemoryLayout.size(ofValue: pass))
             self.password =  intData
         } else {
             self.password = password.data(using: .utf8)!
@@ -62,12 +72,6 @@ class SOCKS5AuthAdapter: SOCKS5Adapter {
         self.endtime  = endtime
         super.init(serverHost: serverHost, serverPort: serverPort)
         self.helloData = Data([0x05, 0x01, 0x02])
-    }
-    
-    // 纯数字--[https://blog.csdn.net/feelinghappy/article/details/120041611]
-    func isNumeric(_ str: String) -> Bool {
-        let numericCharacters = CharacterSet.decimalDigits
-        return str.rangeOfCharacter(from: numericCharacters.inverted) == nil
     }
     
     override func didConnectWith(socket: RawTCPSocketProtocol) {
