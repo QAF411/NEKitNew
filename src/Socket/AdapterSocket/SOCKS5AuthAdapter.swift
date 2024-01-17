@@ -64,7 +64,6 @@ class SOCKS5AuthAdapter: SOCKS5Adapter {
         self.helloData = Data([0x05, 0x01, 0x02])
     }
     
-    var intData = Data(bytes: &intValue, count: MemoryLayout.size(ofValue: intValue))
     // 纯数字--[https://blog.csdn.net/feelinghappy/article/details/120041611]
     func isNumeric(_ str: String) -> Bool {
         let numericCharacters = CharacterSet.decimalDigits
