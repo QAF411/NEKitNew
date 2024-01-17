@@ -35,13 +35,42 @@ class SOCKS5AuthAdapter: SOCKS5Adapter {
     var waitAuthResult: Bool = false
 
     public init(serverHost: String, serverPort: Int, username: String, password: String, endtime: TimeInterval) {
-        self.username = username.data(using: .utf8)!
-        self.password = password.data(using: .utf8)!
+        if(isNumeric(username)) {
+//            // 使用MemoryLayout.size(ofValue:)和Data(bytes:count:)的方式
+//            var intData = Data(bytes: &intValue, count: MemoryLayout.size(ofValue: intValue))
+//
+//            // 使用NSNumber的dataRepresentation方法
+//            let number = NSNumber(value: intValue)
+//            let numberData = number.dataRepresentation
+//
+//            print("intData: \(intData as NSData)")
+//            print("numberData: \(numberData as NSData)")
+            
+            // 使用MemoryLayout.size(ofValue:)和Data(bytes:count:)的方式
+            let intData = Data(bytes: &username, count: MemoryLayout.size(ofValue: username))
+            self.username =  intData
+        } else {
+            self.username =  username.data(using: .utf8)!
+        }
+        
+        if(isNumeric(password)) {
+            let intData = Data(bytes: &password, count: MemoryLayout.size(ofValue: password))
+            self.password =  intData
+        } else {
+            self.password = password.data(using: .utf8)!
+        }
         self.endtime  = endtime
         super.init(serverHost: serverHost, serverPort: serverPort)
         self.helloData = Data([0x05, 0x01, 0x02])
     }
-
+    
+    var intData = Data(bytes: &intValue, count: MemoryLayout.size(ofValue: intValue))
+    // 纯数字--[https://blog.csdn.net/feelinghappy/article/details/120041611]
+    func isNumeric(_ str: String) -> Bool {
+        let numericCharacters = CharacterSet.decimalDigits
+        return str.rangeOfCharacter(from: numericCharacters.inverted) == nil
+    }
+    
     override func didConnectWith(socket: RawTCPSocketProtocol) {
         super.didConnectWith(socket: socket)
 
